@@ -1,0 +1,25 @@
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+
+# User-specific files
+*.dbmdl
+*.bak
+*.backup
+*.env
+*.DS_Store
+
+# ASP.NET secrets folder (optional)
+.vs/
