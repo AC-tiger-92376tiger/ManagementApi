@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using DotNetEnv;
+using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,17 @@ Env.Load();
 // Set the connection string from the environment variable
 builder.Configuration["ConnectionStrings:DefaultConnection"] = 
     Environment.GetEnvironmentVariable("DefaultConnection");
+*/
+/*
+var roleManager = ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+string[] roles = { "Admin", "Manager", "User" };
+
+foreach (var role in roles)
+{
+    if (!await roleManager.RoleExistsAsync(role))
+        await roleManager.CreateAsync(new IdentityRole(role));
+}
+
 */
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(Environment.GetEnvironmentVariable("DefaultConnection")));

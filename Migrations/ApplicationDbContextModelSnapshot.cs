@@ -69,6 +69,9 @@ namespace ManagementApi.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
                     b.Property<string>("Username")
                         .HasColumnType("text");
 

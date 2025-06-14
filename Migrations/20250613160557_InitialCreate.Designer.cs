@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ManagementApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250609032240_InitialCreate")]
+    [Migration("20250613160557_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,36 @@ namespace ManagementApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("ManagementApi.Models.TaskItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tasks");
+                });
 
             modelBuilder.Entity("ManagementApi.Models.User", b =>
                 {
@@ -40,6 +70,9 @@ namespace ManagementApi.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
                         .HasColumnType("text");
 
                     b.Property<string>("Username")

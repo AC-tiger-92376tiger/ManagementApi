@@ -6,6 +6,7 @@ namespace ManagementApi.Models
         public string? Username { get; set; }
         public string? PasswordHash { get; set; } // Store hashed passwords for security
         public string? Email { get; set; }
+        public string? Role { get; set; } = "User"; // Default role
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

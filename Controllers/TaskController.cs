@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 //using YourApp.Data;
 using ManagementApi.Models;
-
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -15,10 +16,17 @@ public class TaskController : ControllerBase
         _context = context;
     }
 
+    [Authorize(Roles = "Admin,Manager,User")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks()
     {
-        return await _context.Tasks.ToListAsync();
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (User.IsInRole("Admin"))
+            return await _context.Tasks.ToListAsync();
+        else
+            return await _context.Tasks.Where(t => t.UserId == userId).ToListAsync();
+        //return await _context.Tasks.ToListAsync();
     }
 
     [HttpGet("{id}")]

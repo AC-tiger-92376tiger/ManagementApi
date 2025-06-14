@@ -34,7 +34,9 @@ namespace ManagementApi.Controllers
             registeruser.Password = BCrypt.Net.BCrypt.HashPassword(registeruser.Password);
             var userEntity = new User
             {
+                Username = registeruser.Username,
                 Email = registeruser.Email,
+                Role = registeruser.Role ?? "User", // Default to "User" if no role is provided
                 PasswordHash = registeruser.Password,
                 CreatedAt = DateTime.UtcNow
             };
@@ -80,7 +82,9 @@ namespace ManagementApi.Controllers
     }
     public class RegisterRequest
     {
+        public string? Username { get; set; }
         public string? Email { get; set; }
+        public string? Role { get; set; } = "User";
         public string? Password { get; set; }
     }
 }
