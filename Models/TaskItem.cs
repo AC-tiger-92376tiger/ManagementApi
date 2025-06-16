@@ -14,7 +14,8 @@ namespace ManagementApi.Models
 
         public DateTime? DueDate { get; set; }
 
-        public string Status { get; set; } = "Pending";
+        public int Status { get; set; }
+        public int Priority { get; set; }
 
         // Foreign Key (optional)
         public string? UserId { get; set; }

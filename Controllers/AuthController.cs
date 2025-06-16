@@ -57,10 +57,14 @@ namespace ManagementApi.Controllers
             }
 
             var token = GenerateJwtToken(user.Email);
-            return Ok(new { token });
+            return Ok(new
+            {
+                token,
+                loginuser = user 
+             });
         }
 
-        private string GenerateJwtToken(string username)
+        public string GenerateJwtToken(string username)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
