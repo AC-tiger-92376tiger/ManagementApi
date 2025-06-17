@@ -19,26 +19,6 @@ namespace ManagementApi.Models
                 optionsBuilder.UseNpgsql("Your_PostgreSQL_Connection_String");
             }
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // modelBuilder.Entity<User>()
-            //     .HasMany(u => u.Tasks)
-            //     .WithOne(t => t.User)
-            //     .HasForeignKey(t => t.UserId)
-            //     .OnDelete(DeleteBehavior.Cascade); // Ensures tasks are deleted when user is deleted
-
-            // modelBuilder.Entity<TaskItem>()
-            //     .Property(t => t.Status)
-            //     .HasConversion<int>(); // Converts Status enum to int for storage
-
-            // modelBuilder.Entity<TaskItem>()
-            //     .Property(t => t.Priority)
-            //     .HasConversion<int>(); // Converts Priority enum to int for storage
-
-            modelBuilder.Entity<TaskItem>()
-                .HasOne(t => t.User) // Navigation property
-                .WithMany(u => u.Tasks) // Reverse navigation
-                .HasForeignKey(t => t.UserId); 
-        }
+        
     }
 }

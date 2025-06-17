@@ -99,7 +99,7 @@ namespace ManagementApi.Controllers
         public string? Priority { get; set; }
 
         // Foreign Key (optional)
-        public string? UserId { get; set; }
+        public string? username { get; set; }
     }
     public enum Status_Enum
     {
