@@ -29,8 +29,24 @@ namespace ManagementApi.Controllers
                     else
                         return await _context.Tasks.Where(t => t.UserId == userId).ToListAsync();
                     */
-            
+            // var tasks = await _context.Tasks.ToListAsync();
+            // List<TaskGetItem> sendtasks = new List<TaskGetItem>();
+            // foreach (var task in tasks)
+            // {
+            //     TaskGetItem sendtask = new TaskGetItem
+            //     {
+            //         Id = task.Id,
+            //         Title = task.Title,
+            //         Description = task.Description,
+            //         DueDate = task.DueDate,
+            //         Status = ((Status_Enum)task.Status).ToString(),
+            //         Priority = ((Priority_Enum)task.Priority).ToString(),
+            //         UserId = task.UserId
+            //     };
+            //     sendtasks.Add(sendtask);
+            // }
             return await _context.Tasks.ToListAsync();
+            //return Ok(sendtasks);
         }
 
         [HttpGet("{id}")]
@@ -72,11 +88,11 @@ namespace ManagementApi.Controllers
     {
         public int Id { get; set; }
 
-       
+
         public string? Title { get; set; }
 
         public string? Description { get; set; }
-
+    
         public DateTime? DueDate { get; set; }
 
         public string? Status { get; set; }
@@ -84,5 +100,18 @@ namespace ManagementApi.Controllers
 
         // Foreign Key (optional)
         public string? UserId { get; set; }
+    }
+    public enum Status_Enum
+    {
+        ToDo = 1,
+        InProgress = 2,
+        Done = 3
+
+    }
+    public enum Priority_Enum
+    {
+        Low = 1,
+        Medium = 2,
+        High = 3
     }
 }

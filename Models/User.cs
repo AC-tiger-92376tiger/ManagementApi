@@ -8,5 +8,6 @@ namespace ManagementApi.Models
         public string? Email { get; set; }
         public string? Role { get; set; } = "User"; // Default role
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>(); // Navigation property for related tasks
     }
 }

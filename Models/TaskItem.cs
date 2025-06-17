@@ -18,6 +18,8 @@ namespace ManagementApi.Models
         public int Priority { get; set; }
 
         // Foreign Key (optional)
-        public string? UserId { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; } = null!; // Navigation property to User
     }
+    
 }
